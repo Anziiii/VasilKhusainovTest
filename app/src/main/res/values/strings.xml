@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">VasilKhusainovTest</string>
+
+    <!-- Search Screen -->
+
+    <string name="title_search">Начните вводить поисковый запрос (от 3-х символов), чтобы увидеть его результаты 👍 </string>
+    <string name="search">Поиск</string>
+    <string name="text_field_placeholder">Введите запрос…</string>
+
+    <string name="title_back">Назад</string>
+    <!--Widgets-->
+    <string name="error_content_title">Упс…</string>
+    <string name="error_content_description">Либо у вас слабое интернет-подключение, либо что-то сломалось у нас - тогда мы в курсе и уже работаем над этим</string>
+    <string name="error_event_title">Обновить</string>
+
+    <string name="empty_items_title">Тут ничего нет</string>
+    <string name="empty_items_description">Возможно чуть позже здесь что-то появится</string>
+
+
+    <!--Card-->
+    <string name="update_date_format">Обновлён: </string>
+    <string name="created_date_format">Создан: </string>
+    <string name="description_title">Описание:</string>
+    <string name="description_card">Подробнее</string>
+
+
+</resources>
