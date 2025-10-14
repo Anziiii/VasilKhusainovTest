@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -76,13 +75,6 @@ fun TreeScreen(
                                 "repository/${event.ownerName}/${event.repositoryName}?path=$encodedPath"
 
                             navController.navigate(route)
-                        }
-
-                        is Effect.ShowSnackbar -> {
-                            snackbarHostState.showSnackbar(
-                                message = event.message,
-                                duration = SnackbarDuration.Short
-                            )
                         }
                     }
                 }

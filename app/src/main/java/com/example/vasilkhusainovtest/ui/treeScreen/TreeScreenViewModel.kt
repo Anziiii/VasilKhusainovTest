@@ -70,7 +70,8 @@ class TreeScreenViewModel(
 
                 _state.update {
                     it.copy(
-                        items = response
+                        items = response,
+                        contentStatus = ContentStatus.Success
                     )
                 }
             } catch (e: Exception) {

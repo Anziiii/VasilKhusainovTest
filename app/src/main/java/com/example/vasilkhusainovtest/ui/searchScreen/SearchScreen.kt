@@ -9,12 +9,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarDuration
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
@@ -45,8 +42,6 @@ fun SearchScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    val snackbarHostState = remember { SnackbarHostState() }
-
     val lazyListState = rememberLazyListState()
 
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -67,10 +62,11 @@ fun SearchScreen(
         containerColor = LocalCustomColorsPalette.current.backgroundColor
     ) { innerPadding ->
 
-        LaunchedEffect(viewModel.effect, lifecycleOwner.lifecycle) {
+        LaunchedEffect(Unit) {
 
-            lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
+            lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.effect.collect { event ->
+                    android.util.Log.d("LOGGER", "eerewrewr")
                     when (event) {
                         Effect.NavigateBack -> navController.popBackStack()
                         is Effect.NavigateToTreeRepository -> {
@@ -80,13 +76,6 @@ fun SearchScreen(
                         is Effect.NavigateToWebView -> {
                             val encodedUrl = Uri.encode(event.url)
                             navController.navigate("webViewScreen/$encodedUrl")
-                        }
-
-                        is Effect.ShowSnackbar -> {
-                            snackbarHostState.showSnackbar(
-                                message = event.message,
-                                duration = SnackbarDuration.Short
-                            )
                         }
                     }
                 }

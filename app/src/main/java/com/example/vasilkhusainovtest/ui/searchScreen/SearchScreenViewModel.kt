@@ -3,10 +3,8 @@ package com.example.vasilkhusainovtest.ui.searchScreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vasilkhusainovtest.common.ApiConfig.DEBOUNCE_DELAY
-import com.example.vasilkhusainovtest.common.AppConfig.EMPTY_ERROR_MESSAGE
 import com.example.vasilkhusainovtest.common.AppConfig.MIN_CHARS_SEARCH
 import com.example.vasilkhusainovtest.domain.SearchInfoGitHubRepository
-import com.example.vasilkhusainovtest.ui.searchScreen.Effect
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.BufferOverflow
@@ -67,8 +65,10 @@ class SearchScreenViewModel(private val searchInfoGitHubRepository: SearchInfoGi
                 )
             }
         } else {
-            viewModelScope.launch(Dispatchers.Main) {
-                _effect.emit(Effect.ShowSnackbar(""))
+            _state.update {
+                it.copy(
+                    contentStatus = ContentStatus.Error
+                )
             }
         }
     }
@@ -142,9 +142,6 @@ class SearchScreenViewModel(private val searchInfoGitHubRepository: SearchInfoGi
                     it.copy(
                         contentStatus = ContentStatus.Error
                     )
-                }
-                viewModelScope.launch(Dispatchers.Main) {
-                    _effect.emit(Effect.ShowSnackbar(e.message ?: EMPTY_ERROR_MESSAGE))
                 }
             }
         }
