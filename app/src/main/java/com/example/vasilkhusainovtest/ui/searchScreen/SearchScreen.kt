@@ -62,11 +62,10 @@ fun SearchScreen(
         containerColor = LocalCustomColorsPalette.current.backgroundColor
     ) { innerPadding ->
 
-        LaunchedEffect(Unit) {
+        LaunchedEffect(viewModel.effect, lifecycleOwner.lifecycle) {
 
             lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.effect.collect { event ->
-                    android.util.Log.d("LOGGER", "eerewrewr")
                     when (event) {
                         Effect.NavigateBack -> navController.popBackStack()
                         is Effect.NavigateToTreeRepository -> {
