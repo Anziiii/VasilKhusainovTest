@@ -6,7 +6,7 @@ GitHub используя их открытое API
 2 дня
 
 ## Общие требования
-1. Использован следующий стек: Compose, MVVM, Сoroutines (включая flow),
+1. Использован следующий стек: Compose, WebView, MVVM, Сoroutines (включая flow),
 Retrofit/OkHttpt, Koin - DI, Compose navigation
 2. Наличие экрана для поиска
 3. Наличие экрана для просмотра репозитория
